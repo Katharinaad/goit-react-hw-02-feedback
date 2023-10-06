@@ -5,6 +5,14 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+    feedbackGiven: false,
+  };
+
+  handleFeedback = type => {
+    this.setState(prevState => ({
+      [type]: prevState[type] + 1,
+      feedbackGiven: true,
+    }));
   };
 
   render() {
