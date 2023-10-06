@@ -16,6 +16,10 @@ export class App extends Component {
   };
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <h1>Feedback App</h1>
+      </div>
+    );
   }
 }
