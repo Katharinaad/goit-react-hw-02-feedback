@@ -41,7 +41,8 @@ export class App extends Component {
         <span>Bad: {bad}</span>
         <span>Total: {this.countTotalFeedback()}</span>
         <span>
-          Positive feedback: (this.countPositiveFeedbackPercentage())%
+          Positive feedback:
+          {Math.round(this.countPositiveFeedbackPercentage())}%
         </span>
       </>
     );
