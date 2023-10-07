@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Notification } from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -27,7 +28,7 @@ export class App extends Component {
   }
 
   render() {
-    const { good, neutral, bad } = this.state;
+    const { good, neutral, bad, feedbackGiven } = this.state;
 
     return (
       <>
@@ -35,15 +36,21 @@ export class App extends Component {
         <button onClick={() => this.handleFeedback('good')}>Good</button>
         <button onClick={() => this.handleFeedback('neutral')}>Neutral</button>
         <button onClick={() => this.handleFeedback('bad')}>Bad</button>
-        <h2>Statistics</h2>
-        <span>Good: {good}</span>
-        <span>Neutral: {neutral}</span>
-        <span>Bad: {bad}</span>
-        <span>Total: {this.countTotalFeedback()}</span>
-        <span>
-          Positive feedback:
-          {Math.round(this.countPositiveFeedbackPercentage())}%
-        </span>
+
+        {feedbackGiven ? (
+          <div>
+            <h2>Statistics</h2>
+            <p>Good: {good}</p>
+            <p>Neutral: {neutral}</p>
+            <p>Total: {this.countTotalFeedback()}</p>
+            <p>
+              Positive feedback:
+              {Math.round(this.countPositiveFeedbackPercentage())}%
+            </p>
+          </div>
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
       </>
     );
   }
