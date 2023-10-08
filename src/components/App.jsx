@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Section } from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
 import { Notification } from './Notification/Notification';
+import { FeedbackOptions } from './Feedback/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -35,13 +36,7 @@ export class App extends Component {
 
     return (
       <>
-        <Section title="Feedback App">
-          <button onClick={() => this.handleFeedback('good')}>Good</button>
-          <button onClick={() => this.handleFeedback('neutral')}>
-            Neutral
-          </button>
-          <button onClick={() => this.handleFeedback('bad')}>Bad</button>
-        </Section>
+        <Section title="Feedback App"></Section>
 
         {feedbackGiven ? (
           <Notification message="There is no feedback" />
