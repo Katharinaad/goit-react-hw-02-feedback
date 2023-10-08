@@ -8,13 +8,11 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    feedbackGiven: false,
   };
 
   handleFeedback = type => {
     this.setState(prevState => ({
       [type]: prevState[type] + 1,
-      feedbackGiven: true,
     }));
   };
 
@@ -30,18 +28,24 @@ export class App extends Component {
   }
 
   render() {
-    const { good, neutral, bad, feedbackGiven } = this.state;
+    const { good, neutral, bad } = this.state;
     const totalFeedback = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
+    const feedbackGiven = good === 0 && neutral === 0 && bad === 0;
 
     return (
       <>
-        <h2>Feedback App</h2>
-        <button onClick={() => this.handleFeedback('good')}>Good</button>
-        <button onClick={() => this.handleFeedback('neutral')}>Neutral</button>
-        <button onClick={() => this.handleFeedback('bad')}>Bad</button>
+        <Section title="Feedback App">
+          <button onClick={() => this.handleFeedback('good')}>Good</button>
+          <button onClick={() => this.handleFeedback('neutral')}>
+            Neutral
+          </button>
+          <button onClick={() => this.handleFeedback('bad')}>Bad</button>
+        </Section>
 
         {feedbackGiven ? (
+          <Notification message="There is no feedback" />
+        ) : (
           <Section title="Statistics">
             <Statistics
               good={good}
@@ -51,8 +55,6 @@ export class App extends Component {
               positivePercentage={positivePercentage}
             />
           </Section>
-        ) : (
-          <Notification message="There is no feedback" />
         )}
       </>
     );
